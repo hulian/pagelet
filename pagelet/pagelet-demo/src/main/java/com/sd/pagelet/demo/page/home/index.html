@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>demo</title>
+<style>
+	.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+	#preloader { position: fixed; left: 0; top: 0; z-index: 999; width: 100%; height: 100%; overflow: visible; background: #E7E7E7 url('/resources/lib/img/preloader.gif') no-repeat center center; }
+</style>
+</head>
+<body ng-controller="mainController">
+	<div id="preloader"></div>
+	<header>
+		<nav class="navbar navbar-default " role="navigation">
+			<div class="navbar-header">
+				<button class="navbar-toggle" type="button" data-toggle="collapse"
+					data-target="#navbar-collapse" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+					<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+						class="icon-bar"></span><span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/#/">Demo</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse" ng-class="{collapse: isCollapsed}" >
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/#/" >首页</a></li>
+					<li><a href="/#/registration" >注册</a></li>
+					<li><a href="/#/about" >关于</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<div id="main">
+		 <div ng-view></div>
+	</div>
+	<script src="/resources/lib/js/head.js"></script>
+	<script>
+		var app;
+		head.load('/resources/lib/css/bootstrap.min.css');
+		head.load('/resources/lib/js/angular.min.js',function(){
+			
+			head.load('/resources/lib/js/ui-bootstrap-tpls-0.14.3.min.js',function(){
+				//remove preloader
+				document.getElementById('preloader').style.display='none';
+			});
+			
+			head.load('/resources/lib/js/angular-route.min.js',function(){
+				app= angular.module('app', ['ui.bootstrap','ngRoute']);
+				// configure our routes
+			    app.config(function($routeProvider,$controllerProvider,$compileProvider, $filterProvider, $provide) {
+			    	
+			        $routeProvider
+			            // route for the about page
+			            .when('/', {
+			                templateUrl : '/home.html'
+			            })
+			            
+			            .when('/about', {
+			                templateUrl : '/about.html',
+			                controller  : 'aboutController'
+			            })
+			            
+			            .when('/registration', {
+			                templateUrl : '/resources/registration/Registration.html'
+			            })
+			    });
+			 	// create the controller and inject Angular's $scope
+			    app.controller('mainController', function($scope) {
+			        $scope.message = 'Everyone come and see how good I look!';
+			    });
+
+			    app.controller('aboutController', function($scope) {
+			        $scope.message = 'Look! I am an about page.';
+			    });
+			    
+			  	//load controllers
+				head.load('/resources/registration/RegistrationController.js');
+			    
+			});
+		});
+		
+		document.ready=function(){
+			
+		}
+	</script>
+</body>
+</html>

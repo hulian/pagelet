@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sd</groupId>
+	<artifactId>pagelet</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<undertow.version>1.3.10.Final</undertow.version>
+		<netty.socketio.version>1.7.7</netty.socketio.version>
+		<commons.dbutils.version>1.6</commons.dbutils.version>
+		<version.bonecp>0.8.0.RELEASE</version.bonecp>
+		<version.kaptcha>2.3.2</version.kaptcha>
+		<ddlutils.version>1.0</ddlutils.version>
+		<jackson.version>2.6.3</jackson.version>
+		<commons.codc.version>1.10</commons.codc.version>
+		<commons.lang.version>2.6</commons.lang.version>
+		<logback.classic.verion>1.1.3</logback.classic.verion>
+		<testng.version>6.9.9</testng.version>
+		<h2.version>1.4.190</h2.version>
+		<jgroup.version>3.6.3.Final</jgroup.version>
+		<mysql.version>5.1.37</mysql.version>
+		<httpclient.version>4.5.1</httpclient.version>
+		<commons.logging.version>1.2</commons.logging.version>
+	</properties>
+
+	<modules>
+		<module>pagelet-core</module>
+		<module>pagelet-undertow</module>
+		<module>pagelet-demo</module>
+	</modules>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
